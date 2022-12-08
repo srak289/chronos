@@ -1,13 +1,16 @@
+import pathlib
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 from .models import *
-from .models import Base
+
+path = pathlib.PosixPath('~/.local/chronos/time.db')
 
 class DBConnection:
 
     def __init__(self):
-        self._engine = create_engine(f"sqlite:///file/whatever")
+        self._engine = create_engine(f'sqlite:///{str(path)}')
 
         self._session_factory = sessionmaker(bind=self._engine)
         self._session = scoped_session(self._session_factory)
