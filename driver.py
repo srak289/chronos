@@ -1,3 +1,4 @@
+import argparse
 import pathlib
 
 from sqlalchemy import create_engine
@@ -5,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 from .models import *
 
-path = pathlib.PosixPath('~/.local/chronos/time.db')
+path = pathlib.PosixPath('/home/srak/time.db')
 
 class DBConnection:
 

@@ -44,12 +44,14 @@ class Base(object):
     def __repr__(self):
         return f"<{self.__class__.__name__}(id={self.id})>"
 
-class Billable(Base):
+class Company(Base):
     name = Column(String, unique=True)
 
-    relationship("Job")
+    relationship("Account", back_populates("company_id"))
 
-class Job(Base):
+class Account(Base):
+    company_id = Column(ForeignKey("company.id"))
+    company_name = relationship("Company")
     name = Column(String, unique=True)
     billing_code = Column(String)
 
